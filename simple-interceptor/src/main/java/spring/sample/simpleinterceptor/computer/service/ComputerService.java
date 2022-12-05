@@ -36,10 +36,16 @@ public class ComputerService {
 
     @PostConstruct
     public void init() {
-        LocalDateTime start = LocalDateTime.of(2022, 12, 05, 4, 0);
-        LocalDateTime end = LocalDateTime.of(2022, 12, 05, 6, 0);
+        LocalDateTime start1 = LocalDateTime.of(2022, 12, 05, 4, 0);
+        LocalDateTime end1 = LocalDateTime.of(2022, 12, 05, 6, 0);
 
-        Computer computer = computerRepository.save(new Computer(100000, "samsung", 1000, start, end));
-        log.info("computer = {}", computer);
+        Computer computer1 = computerRepository.save(new Computer(100000, "samsung", 1000, start1, end1));
+        log.info("computer1 = {}", computer1);
+
+        LocalDateTime start2 = LocalDateTime.of(2022, 12, 20, 4, 0);
+        LocalDateTime end2 = LocalDateTime.of(2022, 12, 25, 6, 0);
+
+        Computer computer2 = computerRepository.save(new Computer(100000, "samsung", 1000, start2, end2));
+        log.info("computer2 = {}", computer2);
     }
 }

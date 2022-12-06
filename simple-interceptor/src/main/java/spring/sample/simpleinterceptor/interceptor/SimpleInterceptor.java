@@ -1,5 +1,6 @@
 package spring.sample.simpleinterceptor.interceptor;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 public class SimpleInterceptor implements HandlerInterceptor {
 
     private final ComputerRepository computerRepository;
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public SimpleInterceptor(ComputerRepository computerRepository) {
         this.computerRepository = computerRepository;
@@ -24,30 +26,30 @@ public class SimpleInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         log.info(requestURI);
 
-        if (requestURI.contains("order")) {
-            Long computerId = Long.valueOf(requestURI.split("/")[3]);
-
-            LocalDateTime findStartedDate = computerRepository.findById(computerId).orElseThrow().getStartedDate();
-            LocalDateTime nowDate = LocalDateTime.of(2022, 12, 05, 16, 30);
-            log.info("findStartedDate = " + findStartedDate);
-            log.info("nowDate = " + nowDate);
-
-            if(nowDate.compareTo(findStartedDate) != 1) {
-                response.setContentType("text/html; charset=UTF-8");
-                response.getWriter().println(
-                        "<script>" +
-                                "alert('이벤트 시간이 아닙니다.');" +
-                                "history.go(-1);" +
-                                "</script>"
-                );
-                response.getWriter().flush();
-
-                log.info("XXXX Event time is FALSE XXXX");
-                return false;
-            } else {
-                log.info("OOOO Event time is TRUE OOOO");
-            }
+        if (!requestURI.contains("order")) {
+            return true;
         }
+
+        Long computerId = Long.valueOf(requestURI.split("/")[3]);
+
+        LocalDateTime start = computerRepository.findById(computerId).orElseThrow().getStartedDate();
+        LocalDateTime now = LocalDateTime.of(2022, 12, 05, 16, 30);
+        log.info("start = " + start);
+        log.info("now = " + now);
+
+        if (now.compareTo(start) != 1) {
+            response.setContentType("application/json; charset=UTF-8");
+            response.setStatus(400);
+
+            MessageDto messageDto = new MessageDto("이벤트 시작일이 아닙니다.");
+            String responseDto = objectMapper.writeValueAsString(messageDto);
+            response.getWriter().write(responseDto);
+
+            log.info("XXXX Event time is FALSE XXXX");
+
+            return false;
+        }
+        log.info("OOOO Event time is TRUE OOOO");
         return true;
     }
 
@@ -58,5 +60,13 @@ public class SimpleInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    }
+
+    static class MessageDto {
+        private String msg;
+
+        public MessageDto(String msg) {
+            this.msg = msg;
+        }
     }
 }

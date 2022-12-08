@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        moreList();
+    });
+
+    function moreList() {
+        let startNum = $("#board li").length;  //마지막 리스트 번호를 알아내기 위해서 tr태그의 length를 구함.
+        console.log("startNum", startNum);     //콘솔로그로 startNum에 값이 들어오는지 확인
+
+        $.ajax({
+            type: "GET",
+            url: "/api/v2/home?start=" + startNum,
+            headers: {'Content-Type': 'application/json'},
+            success: function (response, dd, xhr) {
+                console.log(response);
+                for (let i = 0; i < response.length; i++) {
+                    let element = response[i];
+
+                    let title = `<li id="${element.title}">${element.title}</li>`;
+
+                    $('#board').append(title)
+                }
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    }
+</script>
+<body>
+
+<h1>Board</h1>
+
+<div>
+    <ul id="board" class="board">
+    </ul>
+
+</div>
+
+<button id="addBtn" onclick="moreList();"><span>더보기</span></button>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+### 1.
+POST localhost:8080/api/save
+Content-Type: application/json
+
+{
+  "title": "algo",
+  "tags": [
+      {"name": "algo1"},
+      {"name": "algo2"},
+      {"name": "algo3"},
+      {"name": "algo4"}
+  ]
+}
+
+### 2.
+GET localhost:8080/api/2
+Accept: application/json

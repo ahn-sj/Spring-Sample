@@ -1,4 +1,4 @@
-package springbox.firstclasscollection.study.repository;
+package springbox.firstclasscollection.study.infrastructure;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import springbox.firstclasscollection.study.domain.Study;

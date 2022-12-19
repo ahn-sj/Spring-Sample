@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import springbox.firstclasscollection.study.repository.StudyRepository;
+import springbox.firstclasscollection.study.infrastructure.StudyRepository;
 import springbox.firstclasscollection.tag.domain.Tag;
 import springbox.firstclasscollection.tag.domain.Tags;
 import springbox.firstclasscollection.tag.repository.TagRepository;

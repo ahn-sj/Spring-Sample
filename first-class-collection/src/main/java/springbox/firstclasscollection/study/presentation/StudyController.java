@@ -1,9 +1,9 @@
-package springbox.firstclasscollection.study.controller;
+package springbox.firstclasscollection.study.presentation;
 
 import org.springframework.web.bind.annotation.*;
 import springbox.firstclasscollection.study.domain.Study;
 import springbox.firstclasscollection.study.dto.StudyCreateDto;
-import springbox.firstclasscollection.study.service.StudyService;
+import springbox.firstclasscollection.study.application.StudyService;
 
 @RestController
 @RequestMapping("/api")

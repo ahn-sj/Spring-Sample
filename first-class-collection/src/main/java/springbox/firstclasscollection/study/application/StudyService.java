@@ -1,9 +1,9 @@
-package springbox.firstclasscollection.study.service;
+package springbox.firstclasscollection.study.application;
 
 import org.springframework.stereotype.Service;
 import springbox.firstclasscollection.study.domain.Study;
 import springbox.firstclasscollection.study.dto.StudyCreateDto;
-import springbox.firstclasscollection.study.repository.StudyRepository;
+import springbox.firstclasscollection.study.infrastructure.StudyRepository;
 import springbox.firstclasscollection.tag.domain.Tags;
 import springbox.firstclasscollection.tag.repository.TagRepository;
 

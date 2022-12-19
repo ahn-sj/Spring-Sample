@@ -7,6 +7,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Embeddable
@@ -21,7 +22,12 @@ public class Tags {
 
     public Tags(List<Tag> tags) {
         validateSize(tags);
+        tags = validateSameTag(tags);
         this.tags = tags;
+    }
+
+    private ArrayList<Tag> validateSameTag(List<Tag> tags) {
+        return new ArrayList<>(new HashSet<>(tags));
     }
 
     private void validateSize(List<Tag> tags) {

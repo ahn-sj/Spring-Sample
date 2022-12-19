@@ -30,4 +30,18 @@ class StudyTest {
 
         System.out.println("study = " + study);
     }
+
+    @Test
+    @DisplayName("스터디 모집글 생성 (중복 태그 존재)")
+    public void 스터디_모집글_생성_중복태그() throws Exception {
+        List<Tag> tagList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            tagList.add(tagRepository.save(new Tag("알고리즘")));
+        }
+
+        Study study = studyRepository.save(new Study("알고"));
+        study.addTags(new Tags(tagList));
+
+        System.out.println("study = " + study);
+    }
 }

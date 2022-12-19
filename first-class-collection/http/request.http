@@ -1,4 +1,4 @@
-### 1.
+### 1. POST
 POST localhost:8080/api/save
 Content-Type: application/json
 
@@ -12,6 +12,9 @@ Content-Type: application/json
   ]
 }
 
-### 2.
-GET localhost:8080/api/2
+### 2. GET
+GET localhost:8080/api/1
 Accept: application/json
+
+### 3. DELETE
+DELETE localhost:8080/api/1

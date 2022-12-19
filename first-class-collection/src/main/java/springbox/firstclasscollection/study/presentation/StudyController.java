@@ -2,8 +2,9 @@ package springbox.firstclasscollection.study.presentation;
 
 import org.springframework.web.bind.annotation.*;
 import springbox.firstclasscollection.study.domain.Study;
-import springbox.firstclasscollection.study.dto.StudyCreateDto;
+import springbox.firstclasscollection.study.dto.StudyCreateRequestDto;
 import springbox.firstclasscollection.study.application.StudyService;
+import springbox.firstclasscollection.study.dto.StudyCreateResponseDto;
 
 @RestController
 @RequestMapping("/api")
@@ -21,7 +22,12 @@ public class StudyController {
     }
 
     @PostMapping("/save")
-    public Study create(@RequestBody StudyCreateDto studyCreateDto) {
-        return studyService.create(studyCreateDto);
+    public StudyCreateResponseDto create(@RequestBody StudyCreateRequestDto studyCreateRequestDto) {
+        return studyService.create(studyCreateRequestDto);
+    }
+
+    @DeleteMapping("/{studyId}")
+    public String delete(@PathVariable Long studyId) {
+        return studyService.delete(studyId);
     }
 }

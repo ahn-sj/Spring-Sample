@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import springbox.firstclasscollection.study.infrastructure.StudyRepository;
 import springbox.firstclasscollection.tag.domain.Tag;
 import springbox.firstclasscollection.tag.domain.Tags;
-import springbox.firstclasscollection.tag.repository.TagRepository;
+import springbox.firstclasscollection.tag.infrastructure.TagRepository;
 
 import java.util.ArrayList;
 import java.util.List;

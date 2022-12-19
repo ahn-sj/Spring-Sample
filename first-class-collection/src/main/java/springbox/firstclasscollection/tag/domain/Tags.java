@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Tags {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "study_id")
     private List<Tag> tags = new ArrayList<>();
 
     public Tags(List<Tag> tags) {

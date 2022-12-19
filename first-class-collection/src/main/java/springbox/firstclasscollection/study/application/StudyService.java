@@ -2,10 +2,11 @@ package springbox.firstclasscollection.study.application;
 
 import org.springframework.stereotype.Service;
 import springbox.firstclasscollection.study.domain.Study;
-import springbox.firstclasscollection.study.dto.StudyCreateDto;
+import springbox.firstclasscollection.study.dto.StudyCreateRequestDto;
+import springbox.firstclasscollection.study.dto.StudyCreateResponseDto;
 import springbox.firstclasscollection.study.infrastructure.StudyRepository;
 import springbox.firstclasscollection.tag.domain.Tags;
-import springbox.firstclasscollection.tag.repository.TagRepository;
+import springbox.firstclasscollection.tag.infrastructure.TagRepository;
 
 @Service
 public class StudyService {
@@ -18,14 +19,22 @@ public class StudyService {
         this.tagRepository = tagRepository;
     }
 
-    public Study create(StudyCreateDto studyCreateDto) {
-        Study study = new Study(studyCreateDto.getTitle());
-        study.addTags(new Tags(studyCreateDto.getTags()));
+    public StudyCreateResponseDto create(StudyCreateRequestDto studyCreateRequestDto) {
+        Study study = new Study(studyCreateRequestDto.getTitle());
+        study.addTags(new Tags(studyCreateRequestDto.getTags()));
 
-        return studyRepository.save(study);
+        Study savedStudy = studyRepository.save(study);
+
+        return new StudyCreateResponseDto(savedStudy);
     }
 
     public Study findOne(Long studyId) {
         return studyRepository.findById(studyId).orElseThrow();
+    }
+
+    public String delete(Long studyId) {
+        studyRepository.deleteById(studyId);
+
+        return studyId + "번 스터디 모집글 삭제 완료";
     }
 }

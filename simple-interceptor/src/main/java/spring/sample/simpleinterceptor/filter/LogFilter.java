@@ -1,6 +1,7 @@
 package spring.sample.simpleinterceptor.filter;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.PatternMatchUtils;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import java.util.UUID;
 
 @Slf4j
 public class LogFilter implements Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info("====== log filter init ======");
@@ -25,6 +27,7 @@ public class LogFilter implements Filter {
 
         try {
             log.info("REQUEST [{}][{}]", uuid, requestURI);
+
             chain.doFilter(request, response);
         } catch (Exception e) {
             throw e;

@@ -1,0 +1,15 @@
+### 1. POST lion 저장
+POST localhost:8080/api/save
+Content-Type: application/json
+
+### 2. GET  lion 검색
+GET localhost:8080/api/1
+Accept: application/json
+
+### 3. DELETE lion 제거
+DELETE localhost:8080/api/1
+Accept: application/json
+
+### 4. GET lion 존재 유무
+GET localhost:8080/api/existence/1
+Accept: application/json

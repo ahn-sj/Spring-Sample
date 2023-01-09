@@ -3,7 +3,10 @@
 
 - concurrent-control
 - cqs-cqrs
+- exception-handle
 - first-class-collection
+- jpa-n1-problem
+- response-response-entity
 - simple-interceptor
-- simple-pagination-noffset
 - simple-mockmvc-controller-test
+- simple-pagination-noffset

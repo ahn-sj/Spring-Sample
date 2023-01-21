@@ -1,13 +1,16 @@
 # Flyway 적용해보기
 > Flyway는 오픈소스 마이그레이션 툴로 소스코드를 형상관리하는 Git과 같이 버전 관리 목적인 SCHEMA_VERSION 테이블을 통해 SQL 스크립트의 변화를 추적하면서 자동적으로 DB를 관리한다.
 
-## spring initializr
-![img.png](src/main/resources/img/img.png)
-
 ```java
 //build.gradle
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    
     implementation 'org.flywaydb:flyway-core'
+    implementation 'org.flywaydb:flyway-mysql'
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    ...
 }
 ```
 

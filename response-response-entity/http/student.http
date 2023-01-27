@@ -1,0 +1,15 @@
+### 1. POST student 저장
+POST localhost:8080/api/student
+Content-Type: application/json
+
+### 2. DELETE student 비활성화 200 OK
+DELETE localhost:8080/api/student/v1/1
+Accept: application/json
+
+### 3. DELETE student 삭제 204 No Content
+DELETE localhost:8080/api/student/v2/1
+Accept: application/json
+
+### 4. GET findAll
+GET localhost:8080/api/student
+Accept: application/json

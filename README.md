@@ -5,6 +5,8 @@
 - cqs-cqrs
 - exception-handle
 - first-class-collection
+- flyway-example
+- jdbc-crud-example
 - jpa-n1-problem
 - response-response-entity
 - simple-interceptor

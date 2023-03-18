@@ -1,0 +1,36 @@
+### List Sort ASC(오름차순)  | Sorter Annotation
+GET localhost:8080/api/list/asc
+Accept: application/json
+
+### List Sort DESC(내림차순) | Sorter Annotation
+GET localhost:8080/api/list/desc
+Accept: application/json
+
+### ----------------------------------
+
+### Member 전체 조회
+GET localhost:8080/api/members
+Accept: application/json
+
+### Member 추가
+POST localhost:8080/api/members
+Content-Type: application/json
+
+{
+  "name": "1king",
+  "authority": "ROLE_uSEr"
+}
+
+### Member 수정 (KoreanNameChecker annotation)
+PUT localhost:8080/api/members/1
+Content-Type: application/json
+Authorization: ROLE_USER
+
+{
+  "name": "한국"
+}
+
+### Member 삭제 (AuthorizationHeaderAspect annotation)
+DELETE localhost:8080/api/members/1
+Content-Type: application/json
+Authorization: ROLE_USER

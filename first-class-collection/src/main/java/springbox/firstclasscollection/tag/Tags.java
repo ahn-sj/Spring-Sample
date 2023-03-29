@@ -6,10 +6,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.OneToMany;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,11 +18,14 @@ public class Tags {
     private List<Tag> tags;
 
     public Tags(List<Tag> tags) {
+        validateNotNull(tags);
         this.tags = tags;
     }
 
-    private ArrayList<Tag> validateSameTags(List<Tag> tags) {
-        return new ArrayList<>(new HashSet<>(tags));
+    private void validateNotNull(List<Tag> tags) {
+        if(Objects.isNull(tags)) {
+            throw new IllegalArgumentException("tags는 null이 될 수 없습니다.");
+        }
     }
 
     public int size() {

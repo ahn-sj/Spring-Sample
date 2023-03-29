@@ -13,12 +13,15 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board extends BaseEntity {
+
+    private static int MAX_TAG_SIZE = 5;
 
     private String title;
 
@@ -28,7 +31,20 @@ public class Board extends BaseEntity {
     @Builder
     public Board(String title, Tags tags) {
         this.title = title;
-        this.boardTags = castTagsToBoardTag(tags);
+        if(Objects.nonNull(tags)) {
+            this.boardTags = setTags(tags);
+        }
+    }
+
+    private List<BoardTag> setTags(Tags tags) {
+        validateTagSize(tags);
+        return castTagsToBoardTag(tags);
+    }
+
+    private void validateTagSize(Tags tags) {
+        if(tags.size() > MAX_TAG_SIZE) {
+            throw new IllegalArgumentException("게시물에는 최대 5개의 태그만 가능합니다.");
+        }
     }
 
     private List<BoardTag> castTagsToBoardTag(Tags tags) {

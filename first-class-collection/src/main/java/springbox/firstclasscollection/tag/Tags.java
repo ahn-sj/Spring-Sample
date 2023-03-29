@@ -2,7 +2,6 @@ package springbox.firstclasscollection.tag;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
@@ -14,7 +13,6 @@ import java.util.List;
 
 @Embeddable
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@ToString
 public class Tags {
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST)

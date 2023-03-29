@@ -1,33 +1,39 @@
 package springbox.firstclasscollection.board;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import springbox.firstclasscollection.BaseEntity;
+import springbox.firstclasscollection.boardtag.BoardTag;
 import springbox.firstclasscollection.tag.Tags;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@ToString
-public class Board {
-
-    @Id @GeneratedValue
-    @Column(name = "board_id")
-    private Long id;
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Board extends BaseEntity {
 
     private String title;
 
-    @Embedded
-    private Tags tags;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private List<BoardTag> boardTags = new ArrayList<>();
 
-    public Board(String title) {
+    @Builder
+    public Board(String title, Tags tags) {
         this.title = title;
+        this.boardTags = castTagsToBoardTag(tags);
     }
 
-    public void addTags(Tags tags) {
-        this.tags = tags;
+    private List<BoardTag> castTagsToBoardTag(Tags tags) {
+        return tags.toList().stream()
+                .map(tag -> BoardTag.of(this, tag))
+                .collect(Collectors.toList());
     }
 }

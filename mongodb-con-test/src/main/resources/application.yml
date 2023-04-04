@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      #uri: mongodb+srv://<username>:<pwd>@<cluster>:mongodb:net/<database-name>
+      uri: mongodb://localhost:27017/sample

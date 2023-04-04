@@ -1,0 +1,13 @@
+### GET request with a header
+GET localhost:8080/item
+Accept: application/json
+
+### Send POST request with json body
+POST localhost:8080/item
+Content-Type: application/json
+
+{
+  "name":"이름",
+  "quantity":"100",
+  "category": "카테고리"
+}

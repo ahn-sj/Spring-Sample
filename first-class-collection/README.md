@@ -31,4 +31,12 @@ https://jay-ya.tistory.com/45
 
 
 **참고**<br/>
-https://lovecode.tistory.com/52
+- [링크](https://lovecode.tistory.com/52)
+- [링크](https://blogshine.tistory.com/475)
+- [링크](https://github.com/woowacourse-teams/2021-botobo/blob/b2a548247d/backend/src/main/java/botobo/core/domain/tag/Tags.java)
+- [링크](https://bgpark.tistory.com/156)
+
+**트러블슈팅**<br/>
+- [링크](https://heekng.tistory.com/151)
+- [링크](https://conservative-vector.tistory.com/entry/%EC%98%A4%EB%A5%98)
+- [링크](https://webcache.googleusercontent.com/search?q=cache:Iycw7PgL5MYJ:https://hianna.tistory.com/582&cd=2&hl=ko&ct=clnk&gl=kr)

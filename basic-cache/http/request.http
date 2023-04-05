@@ -1,0 +1,25 @@
+### GET request with a header
+GET localhost:8080/api/books
+Accept: application/json
+
+### Send POST request with json body
+GET localhost:8080/api/books/1
+Content-Type: application/json
+
+### Send POST request with json body
+POST localhost:8080/api/books
+Content-Type: application/json
+
+{
+  "isbn": 100000000,
+  "title": "제목없음"
+}
+
+### Send PUT request with json body
+PUT localhost:8080/api/books/1
+Content-Type: application/json
+
+{
+  "isbn": 300000000,
+  "title": "제목있음"
+}

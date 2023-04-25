@@ -1,7 +1,7 @@
-package springbox.likesexample.repository;
+package springbox.likesexample.v2;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import springbox.likesexample.v1.board.DiscussionBoardV1;
+import springbox.likesexample.v2.DiscussionBoardV2;
 
-public interface DiscussionBoardRepositoryV1 extends JpaRepository<DiscussionBoardV1, Long> {
+public interface DiscussionBoardRepositoryV2 extends JpaRepository<DiscussionBoardV2, Long> {
 }

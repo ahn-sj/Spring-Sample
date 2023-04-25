@@ -1,4 +1,4 @@
-package springbox.slackbot.utils;
+package springbox.slackbot.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import java.util.TimeZone;
 
 @Component
 @Slf4j
-public class TimeZoneUtil {
+public class TimeZoneConfig {
 
     @PostConstruct
     public void setTimeZone() {

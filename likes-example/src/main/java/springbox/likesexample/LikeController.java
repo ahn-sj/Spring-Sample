@@ -1,2 +1,8 @@
-package springbox.likesexample;public class LikeController {
+package springbox.likesexample;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class LikeController {
+
 }

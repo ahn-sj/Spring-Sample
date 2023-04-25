@@ -1,4 +1,4 @@
-package springbox.likesexample.v1.board;
+package springbox.likesexample.v2;
 
 import lombok.AccessLevel;
 import lombok.Getter;

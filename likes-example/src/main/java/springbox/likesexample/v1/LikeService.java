@@ -1,13 +1,13 @@
-package springbox.likesexample.like;
+package springbox.likesexample.v1;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import springbox.likesexample.v2.DiscussionBoardRepositoryV2;
 import springbox.likesexample.repository.LikeRepository;
-import springbox.likesexample.v1.board.DiscussionBoardV1;
-import springbox.likesexample.repository.DiscussionBoardRepository;
-import springbox.likesexample.user.User;
+import springbox.likesexample.domain.User;
 import springbox.likesexample.repository.UserRepository;
+import springbox.likesexample.v2.DiscussionBoardV2;
 
 @Service
 @Transactional
@@ -16,7 +16,8 @@ public class LikeService {
 
     private final LikeRepository likeRepository;
     private final UserRepository userRepository;
-    private final DiscussionBoardRepository discussionBoardRepository;
+    private final DiscussionBoardRepositoryV1 discussionBoardRepositoryV1;
+    private final DiscussionBoardRepositoryV2 discussionBoardRepositoryV2;
 
     /**
      * 하나의 API에서 LIKE/UN_LIKE 처리
@@ -26,12 +27,12 @@ public class LikeService {
      */
     public void likeV1(Long userId, Long boardId) {
         User user = findUser(userId);
-        DiscussionBoardV1 board = findBoard(boardId);
+        DiscussionBoardV1 board = findBoardV1(boardId);
 
         boolean isExist = existLike(userId, boardId);
 
         if(isExist) {
-            Like like = likeRepository.save(new Like(board, user));
+            LikeV1 like = likeRepository.save(new LikeV1(board, user));
             like.addLike(like);
         }
         if(!isExist) {
@@ -47,16 +48,23 @@ public class LikeService {
      */
     public void likeV2(Long userId, Long boardId) {
         User user = findUser(userId);
-        DiscussionBoardV1 board = findBoard(boardId);
+        DiscussionBoardV2 board = findBoardV2(boardId);
 
         if(existLike(userId, boardId)) {
-            Like like = likeRepository.save(new Like(board, user));
-            like.addLike(like);
+            // LikeV1 like = likeRepository.save(new LikeV1(board, user));
+            //like.addLike(like);
+            //board.
         }
     }
 
-    private DiscussionBoardV1 findBoard(Long boardId) {
-        return discussionBoardRepository.findById(boardId).orElseThrow(() -> {
+    private DiscussionBoardV1 findBoardV1(Long boardId) {
+        return discussionBoardRepositoryV1.findById(boardId).orElseThrow(() -> {
+            throw new RuntimeException("해당 게시물이 존재하지 않습니다.");
+        });
+    }
+
+    private DiscussionBoardV2 findBoardV2(Long boardId) {
+        return discussionBoardRepositoryV2.findById(boardId).orElseThrow(() -> {
             throw new RuntimeException("해당 게시물이 존재하지 않습니다.");
         });
     }

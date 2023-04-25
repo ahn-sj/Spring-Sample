@@ -1,4 +1,4 @@
-package springbox.exceptionhandle.recover;
+package springbox.exceptionhandle.recover.printer;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

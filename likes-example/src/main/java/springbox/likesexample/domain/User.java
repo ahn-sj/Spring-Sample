@@ -1,9 +1,9 @@
-package springbox.likesexample.user;
+package springbox.likesexample.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import springbox.likesexample.like.Like;
+import springbox.likesexample.v1.LikeV1;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,13 +21,13 @@ public class User {
     private String name;
 
     @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
-    private List<Like> likes = new ArrayList<>();
+    private List<LikeV1> likes = new ArrayList<>();
 
     public User(String name) {
         this.name = name;
     }
 
-    public void addLike(Like like) {
+    public void addLike(LikeV1 like) {
         this.likes.add(like);
     }
 }

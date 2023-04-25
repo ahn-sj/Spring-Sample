@@ -1,4 +1,4 @@
-package springbox.exceptionhandle.recover;
+package springbox.exceptionhandle.recover.printer;
 
 import lombok.AccessLevel;
 import lombok.Getter;

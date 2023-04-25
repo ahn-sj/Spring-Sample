@@ -1,26 +1,19 @@
 package springbox.exceptionhandle.recover;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FileUtils {
+public class calcMoney {
     private static final String NOT_EXIST_FILE_PATH = "NOT_EXIST_FILE_PATH";
 
     public static void main(String[] args) {
         List<Integer> spendMoneys = Arrays.asList(1000, 5000, 10000, null, 50000);
 
         int index = 0;
-
         int total = 0;
 
         while (index < spendMoneys.size()) {
             try {
-
                 total = total + spendMoneys.get(index);
                 index++;
             } catch (NullPointerException e) {
@@ -32,9 +25,5 @@ public class FileUtils {
         }
 
         System.out.println("total = " + total);
-
-
     }
-
-
 }

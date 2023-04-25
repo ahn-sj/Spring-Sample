@@ -1,4 +1,4 @@
-package springbox.exceptionhandle.recover;
+package springbox.exceptionhandle.recover.printer;
 
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.retry.annotation.Backoff;

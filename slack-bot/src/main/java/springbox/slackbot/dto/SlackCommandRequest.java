@@ -1,4 +1,4 @@
-package springbox.slackbot;
+package springbox.slackbot.dto;
 
 import lombok.Getter;
 import lombok.Setter;

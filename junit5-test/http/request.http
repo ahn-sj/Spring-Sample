@@ -1,0 +1,11 @@
+### Send POST request with json body
+POST localhost:8080/books/regist
+Content-Type: application/json
+
+{
+  "title": "자바 ORM 표준 JPA 프로그래밍"
+}
+
+### GET request with a header
+GET localhost:8080/books
+Accept: application/json

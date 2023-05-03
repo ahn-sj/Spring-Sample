@@ -9,3 +9,11 @@ Content-Type: application/json
 {
   "email": "aaa@gmail.com"
 }
+
+### Redis에서 토큰 가져오기
+POST localhost:8080/refresh-token
+Content-Type: application/json
+
+{
+  "refresh": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYWFAZ21haWwuY29tIiwiZXhwIjoxNjgzNzQyMTE3LCJpYXQiOjE2ODMxMzczMTd9.0RVkb4QWygFm4kKH5nAYZ07pw2dT7jv7J9w4_5S_iw4"
+}

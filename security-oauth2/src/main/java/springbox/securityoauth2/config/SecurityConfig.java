@@ -9,7 +9,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import springbox.securityoauth2.auth.jwt.TokenAuthenticationFilter;
+import springbox.securityoauth2.auth.oauth.CustomAuthorizationRequestRepository;
 import springbox.securityoauth2.auth.oauth.CustomOAuth2UserService;
+import springbox.securityoauth2.auth.oauth.OAuth2FailureHandler;
 import springbox.securityoauth2.auth.oauth.OAuth2SuccessHandler;
 import springbox.securityoauth2.user.Role;
 
@@ -20,44 +22,46 @@ public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
+    private final OAuth2FailureHandler oAuth2FailureHandler;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .formLogin().disable()
                 .csrf().disable()
                 .httpBasic().disable()
-                .headers().frameOptions().disable();
-
-
-        /**
-         * TODO: 카카오 로그인 시 쿠키에 JSESSIONID 생성 막기
-         * 구글은 생성되지 X
-         */
-        http
+                .headers().frameOptions().disable()
+                .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS); // TODO: 쿠키에 JSESSIONID 생성 막기
 
         http
                 .authorizeRequests()
                         .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
                         .antMatchers("/api/v1/**").hasRole(Role.USER.name())
+                        .antMatchers("/login", "/join", "/refresh-token").permitAll()
                         .anyRequest().authenticated();
 
         http
-                .logout()
-                        .logoutSuccessUrl("/");
-
-        http
                 .oauth2Login()
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService)
+//                    .authorizationEndpoint()
+//                    .baseUri("/oauth2/authorize")
+//                    .authorizationRequestRepository(new CustomAuthorizationRequestRepository())
+//                .and()
+//                    .redirectionEndpoint()
+//                    .baseUri("/oauth2/callback/*")
+//                .and()
+                    .userInfoEndpoint()
+                    .userService(customOAuth2UserService)
                 .and()
-                .successHandler(oAuth2SuccessHandler);
+                    .successHandler(oAuth2SuccessHandler)
+                    .failureHandler(oAuth2FailureHandler);
 
         http
                 .logout()
                 .clearAuthentication(true)
-                .deleteCookies("JSESSIONID");
+                .deleteCookies("JSESSIONID")
+                .logoutSuccessUrl("/");
 
         //jwt filter 설정
         http

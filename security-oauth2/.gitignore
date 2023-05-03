@@ -1,4 +1,5 @@
 **/application-oauth.properties
+**/application-jwt.properties
 
 HELP.md
 .gradle

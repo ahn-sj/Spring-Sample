@@ -10,7 +10,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import springbox.securityoauth2.auth.UserRepository;
+import springbox.securityoauth2.user.UserRepository;
 
 import java.util.Collections;
 import java.util.Map;
@@ -32,9 +32,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
          * 현재 로그인 진행 중인 서비스
          * Google, Naver, ...
          */
-        String registrationId = oAuth2UserRequest.getClientRegistration().getRegistrationId();
+        String registrationId = oAuth2UserRequest.getClientRegistration().getRegistrationId().toUpperCase();
         String userNameAttributeName = oAuth2UserRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
-
         log.info(">>>>>>>> registrationId = {}", registrationId);
         log.info(">>>>>>>> userNameAttributeName = {}", userNameAttributeName);
 

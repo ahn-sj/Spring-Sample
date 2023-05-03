@@ -3,7 +3,7 @@ package springbox.securityoauth2.auth.jwt;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import springbox.securityoauth2.auth.User;
+import springbox.securityoauth2.user.User;
 
 import java.util.ArrayList;
 import java.util.Collection;

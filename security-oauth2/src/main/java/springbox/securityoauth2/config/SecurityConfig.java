@@ -5,15 +5,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import springbox.securityoauth2.auth.jwt.TokenAuthenticationFilter;
 import springbox.securityoauth2.auth.oauth.CustomOAuth2UserService;
 import springbox.securityoauth2.auth.oauth.OAuth2SuccessHandler;
-import springbox.securityoauth2.auth.Role;
+import springbox.securityoauth2.user.Role;
 
 @Configuration
-@EnableWebSecurity(debug = true) //시큐리티 활성화
+@EnableWebSecurity// (debug = true) //시큐리티 활성화
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -24,7 +25,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .httpBasic().disable()
                 .headers().frameOptions().disable();
+
+
+        /**
+         * TODO: 카카오 로그인 시 쿠키에 JSESSIONID 생성 막기
+         * 구글은 생성되지 X
+         */
+        http
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http
                 .authorizeRequests()

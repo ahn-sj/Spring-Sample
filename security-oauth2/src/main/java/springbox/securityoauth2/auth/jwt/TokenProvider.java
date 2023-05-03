@@ -39,6 +39,7 @@ public class TokenProvider {
 
     public TokenResponse generateToken(String email) {
         return new TokenResponse(createToken(email, ACCESS), createToken(email, REFRESH));
+//        return new TokenResponse(createToken(email, ACCESS));
     }
 
     public String createToken(String email, String type) {
@@ -72,9 +73,11 @@ public class TokenProvider {
         return false;
     }
 
-    public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
-        return claims.getSubject();
+    public String getUsernameFromToken(String accessToken) {
+        try {
+            return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody().getSubject();
+        } catch (ExpiredJwtException e) {
+            return e.getClaims().getSubject();
+        }
     }
-
 }

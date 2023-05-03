@@ -6,8 +6,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import springbox.securityoauth2.auth.User;
-import springbox.securityoauth2.auth.UserRepository;
+import springbox.securityoauth2.user.User;
+import springbox.securityoauth2.user.UserRepository;
 
 @Service
 @RequiredArgsConstructor

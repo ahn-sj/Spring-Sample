@@ -1,15 +1,16 @@
-package springbox.securityoauth2.auth;
+package springbox.securityoauth2.user;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
+@ToString
 public class User {
 
     @Id
@@ -18,6 +19,8 @@ public class User {
 
     @Column(nullable = false)
     private String name;
+
+    private String password;
 
     @Column(nullable = false)
     private String email;
@@ -28,14 +31,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
-
-    @Builder
-    public User(String name, String email, String picture, Role role) {
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-        this.role = role;
-    }
 
     public void update(String name, String picture) {
         this.name = name;

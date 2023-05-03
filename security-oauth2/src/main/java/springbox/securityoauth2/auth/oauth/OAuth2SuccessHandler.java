@@ -7,7 +7,6 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
-import springbox.securityoauth2.auth.jwt.Token;
 import springbox.securityoauth2.auth.jwt.TokenProvider;
 import springbox.securityoauth2.auth.jwt.TokenResponse;
 
@@ -32,7 +31,11 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
         log.info("OAuth2User in Principal = {}", oAuth2User);
 
-        log.info("토큰 발행 시작");
+        /**
+         * 쿠키에서 URI를 얻어온다.
+         */
+
+        log.info("[OAuth2SuccessHandler] 토큰 발행 시작");
 
         TokenResponse tokenResponse = tokenProvider.generateToken(oAuth2User.getName());
         log.info("tokenResponse = {}", tokenResponse);

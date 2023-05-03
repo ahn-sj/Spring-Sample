@@ -1,4 +1,4 @@
-package springbox.securityoauth2.auth;
+package springbox.securityoauth2.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

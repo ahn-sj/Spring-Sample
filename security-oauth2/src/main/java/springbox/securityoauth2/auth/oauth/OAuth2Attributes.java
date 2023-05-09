@@ -2,6 +2,8 @@ package springbox.securityoauth2.auth.oauth;
 
 import lombok.Builder;
 import lombok.Getter;
+import springbox.securityoauth2.user.Role;
+import springbox.securityoauth2.user.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,5 +72,15 @@ public class OAuth2Attributes {
         memberAttribute.put("picture", picture);
 
         return memberAttribute;
+    }
+
+    public User toEntity() {
+        return User.builder()
+                .name(name)
+                .email(email)
+                .password(null)
+                .picture(picture)
+                .role(Role.USER)
+                .build();
     }
 }

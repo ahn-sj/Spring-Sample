@@ -1,13 +1,22 @@
 package springbox.securityoauth2.auth.token;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.springframework.data.redis.core.RedisHash;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@RedisHash(value = "refreshToken", timeToLive = 60)
+//@RedisHash(value = "refreshToken", timeToLive = 60)
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class RefreshToken {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String refreshToken;
     private Long userId;
 

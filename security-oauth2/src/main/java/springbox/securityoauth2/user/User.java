@@ -32,9 +32,11 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
-    public void update(String name, String picture) {
+    public User update(String name, String picture) {
         this.name = name;
         this.picture = picture;
+
+        return this;
     }
 
     public String getRoleKey() {

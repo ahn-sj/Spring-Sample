@@ -1,17 +1,15 @@
 package springbox.securityoauth2.user;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import springbox.securityoauth2.auth.jwt.TokenProvider;
 import springbox.securityoauth2.auth.jwt.TokenResponse;
 import springbox.securityoauth2.auth.token.RefreshToken;
-import springbox.securityoauth2.auth.token.RefreshTokenRepository;
+import springbox.securityoauth2.auth.token.RefreshTokenRedisRepository;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Slf4j
 @RestController
@@ -19,12 +17,12 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final TokenProvider tokenProvider;
-    private final RefreshTokenRepository refreshTokenRepository;
+    private final RefreshTokenRedisRepository refreshTokenRepository;
 
     public UserController(
             UserRepository userRepository,
             TokenProvider tokenProvider,
-            RefreshTokenRepository refreshTokenRepository
+            RefreshTokenRedisRepository refreshTokenRepository
     ) {
         this.userRepository = userRepository;
         this.tokenProvider = tokenProvider;

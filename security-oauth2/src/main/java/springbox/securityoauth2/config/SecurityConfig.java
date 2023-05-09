@@ -9,10 +9,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import springbox.securityoauth2.auth.jwt.TokenAuthenticationFilter;
-import springbox.securityoauth2.auth.oauth.CustomAuthorizationRequestRepository;
-import springbox.securityoauth2.auth.oauth.CustomOAuth2UserService;
-import springbox.securityoauth2.auth.oauth.OAuth2FailureHandler;
-import springbox.securityoauth2.auth.oauth.OAuth2SuccessHandler;
+import springbox.securityoauth2.auth.oauth.*;
 import springbox.securityoauth2.user.Role;
 
 @Configuration
@@ -38,16 +35,16 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                         .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
-                        .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                        .antMatchers("/login", "/join", "/refresh-token").permitAll()
+                        .antMatchers("/has-auth").hasRole(Role.USER.name())
+                        .antMatchers("/login", "/join", "/refresh-token", "/oauth2/authorize/**", "/home").permitAll()
                         .anyRequest().authenticated();
 
         http
                 .oauth2Login()
-//                    .authorizationEndpoint()
-//                    .baseUri("/oauth2/authorize")
-//                    .authorizationRequestRepository(new CustomAuthorizationRequestRepository())
-//                .and()
+                    .authorizationEndpoint()
+                    .baseUri("/oauth2/authorize")
+                    .authorizationRequestRepository(new CookieAuthorizationRequestRepository())
+                .and()
 //                    .redirectionEndpoint()
 //                    .baseUri("/oauth2/callback/*")
 //                .and()

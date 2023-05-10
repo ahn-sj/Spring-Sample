@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    include: oauth, jwt
+
+  datasource:
+    url: [??] ex) jdbc:mysql://localhost:3306/DB??
+    driver-class-name: [??] ex) com.mysql.cj.jdbc.Driver
+    username: [??]
+    password: [??]

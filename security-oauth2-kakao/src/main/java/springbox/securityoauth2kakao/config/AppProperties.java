@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.security.oauth2.client.ClientsConfiguredCondition;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientPropertiesRegistrationAdapter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
@@ -18,7 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Configuration
-@EnableConfigurationProperties(OAuth2ClientProperties.class)
+@ConfigurationProperties(prefix = "spring.security.oauth2.client")
 @RequiredArgsConstructor
 @Conditional(ClientsConfiguredCondition.class)
 public class AppProperties {

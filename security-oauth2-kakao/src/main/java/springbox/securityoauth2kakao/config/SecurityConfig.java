@@ -8,11 +8,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import springbox.securityoauth2kakao.security.token.TokenAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity// (debug = true) //시큐리티 활성화
 @RequiredArgsConstructor
 public class SecurityConfig {
+
+    @Bean
+    public TokenAuthenticationFilter tokenAuthenticationFilter() {
+        return new TokenAuthenticationFilter();
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -28,35 +34,22 @@ public class SecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
-//                .antMatchers("/has-auth").hasRole(Role.USER.name())
-//                .antMatchers("/login", "/join", "/refresh-token", "/oauth2/authorize/**", "/home").permitAll()
+                .antMatchers("/login", "/join", "/oauth2/kakao", "/oauth2/authorize/**").permitAll()
                 .anyRequest().authenticated();
 
         http
                 .oauth2Login()
-                .defaultSuccessUrl("/login-success")
                 .authorizationEndpoint()
-                .baseUri("/oauth2/authorize")
-//                .authorizationRequestRepository(new CookieAuthorizationRequestRepository())
-//                .and()
-//                    .redirectionEndpoint()
-//                    .baseUri("/oauth2/callback/*")
-                .and()
-                .userInfoEndpoint();
-//                .userService(customOAuth2UserService)
-//                .and()
-//                .successHandler(oAuth2SuccessHandler)
-//                .failureHandler(oAuth2FailureHandler);
+                .baseUri("/oauth2/authorize");
 
 //        http
 //                .logout()
 //                .clearAuthentication(true)
 //                .deleteCookies("JSESSIONID")
-//                .logoutSucce*/ssUrl("/");
+//                .logoutSuccessUrl("/");
 
-        //jwt filter 설정
-//        http
-//                .addFilterBefore(new TokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http
+                .addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

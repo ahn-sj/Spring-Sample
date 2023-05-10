@@ -1,8 +1,8 @@
-package croundteam.cround.security;
+package springbox.securityoauth2kakao.security;
 
-import croundteam.cround.member.domain.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import springbox.securityoauth2kakao.member.Member;
 
 import java.util.Collection;
 

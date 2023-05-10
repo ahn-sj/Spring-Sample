@@ -1,11 +1,11 @@
-package croundteam.cround.security;
+package springbox.securityoauth2kakao.security;
 
-import croundteam.cround.member.domain.Member;
-import croundteam.cround.member.repository.MemberRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import springbox.securityoauth2kakao.member.Member;
+import springbox.securityoauth2kakao.member.MemberRepository;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

@@ -3,7 +3,11 @@ spring:
     include: oauth, jwt
 
   datasource:
-    url: [??] ex) jdbc:mysql://localhost:3306/DB??
-    driver-class-name: [??] ex) com.mysql.cj.jdbc.Driver
-    username: [??]
-    password: [??]
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+logging:
+  level:
+    root: debug

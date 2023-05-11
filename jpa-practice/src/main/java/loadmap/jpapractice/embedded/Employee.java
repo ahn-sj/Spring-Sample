@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 
-@Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Data
+//@Entity
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@Data
 public class Employee {
 }

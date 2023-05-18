@@ -1,16 +1,17 @@
-package loadmap.jpapractice.jpql;
+package loadmap.jpapractice.embedded;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Data
 @AllArgsConstructor
-public class Address {
+@NoArgsConstructor
+public class HomeAddress {
     private String city;
     private String street;
     private String zipcode;
-
 }

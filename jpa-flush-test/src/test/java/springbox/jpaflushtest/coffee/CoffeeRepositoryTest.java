@@ -1,21 +1,19 @@
 package springbox.jpaflushtest.coffee;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
+import springbox.jpaflushtest.blog.Todo;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 class CoffeeRepositoryTest {
 
-    @Autowired
+//    @Autowired
     EntityManager em;
 
     @Test
@@ -53,6 +51,8 @@ class CoffeeRepositoryTest {
         em.persist(new Coffee("아메리카노"));
         em.persist(new Coffee("카페라떼"));
         em.persist(new Coffee("카푸치노"));
+
+        System.out.println("flush????");
 
         em.createQuery("update Coffee c set c.kind = '에스프레소' where c.id = 1").executeUpdate();
 

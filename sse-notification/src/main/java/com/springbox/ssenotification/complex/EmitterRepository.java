@@ -1,4 +1,4 @@
-package com.springbox.ssenotification;
+package com.springbox.ssenotification.complex;
 
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -14,4 +14,7 @@ public interface EmitterRepository {
     void deleteById(String emitterId);
     void deleteAllEmitterStartWithId(String memberId);
     void deleteAllEventCacheStartWithId(String memberId);
+
+    void print();
+
 }

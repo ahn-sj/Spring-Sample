@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Test Page</title>
+    <script type="text/javaScript">
+        function start() {
+            let index = Math.floor(Math.random() * 100);
+            const eventSource = new EventSource(`http://localhost:8080/alarm/` + index);
+
+            eventSource.onmessage = (e) => {
+                console.log(e);
+
+                let data = JSON.parse(e.data);
+
+                if(data.type === "dummy") return;
+
+                alert("received: " + data.url);
+            }
+        }
+    </script>
+</head>
+<body>
+<button type="button" onclick="start()">연결 맺기</button>
+</body>
+</html>

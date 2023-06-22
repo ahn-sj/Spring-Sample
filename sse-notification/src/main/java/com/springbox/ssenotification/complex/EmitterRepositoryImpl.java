@@ -1,15 +1,17 @@
-package com.springbox.ssenotification;
+package com.springbox.ssenotification.complex;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 @Repository
+@Slf4j
 public class EmitterRepositoryImpl implements EmitterRepository {
+
     private final Map<String, SseEmitter> emitters = new ConcurrentHashMap<>();
     private final Map<String, Object> eventCache = new ConcurrentHashMap<>();
 
@@ -80,5 +82,12 @@ public class EmitterRepositoryImpl implements EmitterRepository {
             }
         }
 
+    }
+
+    @Override
+    public void print() {
+        emitters.forEach((key, emitter) -> {
+            log.info("{}: {}", key, emitter);
+        });
     }
 }

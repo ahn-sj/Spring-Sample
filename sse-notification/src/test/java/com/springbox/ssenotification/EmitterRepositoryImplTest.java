@@ -1,5 +1,8 @@
 package com.springbox.ssenotification;
 
+import com.springbox.ssenotification.complex.EmitterRepository;
+import com.springbox.ssenotification.complex.EmitterRepositoryImpl;
+import com.springbox.ssenotification.complex.Notification;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -7,7 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.Map;
 
-import static com.springbox.ssenotification.NotificationType.REVIEW;
+import static com.springbox.ssenotification.complex.NotificationType.REVIEW;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

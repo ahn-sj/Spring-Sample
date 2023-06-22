@@ -1,12 +1,14 @@
-package com.springbox.ssenotification;
+package com.springbox.ssenotification.complex;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Notification {
 
     @Id @GeneratedValue

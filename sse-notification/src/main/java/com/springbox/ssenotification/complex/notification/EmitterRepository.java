@@ -1,4 +1,4 @@
-package com.springbox.ssenotification.complex;
+package com.springbox.ssenotification.complex.notification;
 
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
@@ -9,7 +9,7 @@ public interface EmitterRepository {
     void saveEventCache(String eventCacheId, Object event);
 
     Map<String, SseEmitter> findAllEmitterStartWithByMemberId(String memberId);
-    Map<String, Object> findAllEventCacheStartWithByMemberId(String memberId);
+    Map<String, Object> findAllEventCacheStartWithById(String memberId);
 
     void deleteById(String emitterId);
     void deleteAllEmitterStartWithId(String memberId);

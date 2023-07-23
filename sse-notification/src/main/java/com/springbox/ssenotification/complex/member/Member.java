@@ -1,4 +1,4 @@
-package com.springbox.ssenotification.complex;
+package com.springbox.ssenotification.complex.member;
 
 import lombok.Builder;
 import lombok.Getter;

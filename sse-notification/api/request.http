@@ -1,0 +1,15 @@
+### 회원 저장
+POST localhost:8080/members/save
+Content-Type: application/json
+
+{
+  "name": "회원A"
+}
+
+### 리뷰 저장
+POST localhost:8080/comments/sender/2/receiver/1
+Content-Type: application/json
+
+{
+  "content": "될까"
+}

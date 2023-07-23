@@ -1,4 +1,4 @@
-package com.springbox.ssenotification.complex;
+package com.springbox.ssenotification.complex.notification;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

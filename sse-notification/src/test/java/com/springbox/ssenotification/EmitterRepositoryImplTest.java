@@ -1,8 +1,8 @@
 package com.springbox.ssenotification;
 
-import com.springbox.ssenotification.complex.EmitterRepository;
-import com.springbox.ssenotification.complex.EmitterRepositoryImpl;
-import com.springbox.ssenotification.complex.Notification;
+import com.springbox.ssenotification.complex.notification.EmitterRepository;
+import com.springbox.ssenotification.complex.notification.EmitterRepositoryImpl;
+import com.springbox.ssenotification.complex.notification.Notification;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.Map;
 
-import static com.springbox.ssenotification.complex.NotificationType.REVIEW;
+import static com.springbox.ssenotification.complex.notification.NotificationType.REVIEW;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -87,7 +87,7 @@ class EmitterRepositoryImplTest {
         emitterRepository.saveEventCache(eventCacheId3, notification3);
 
         //when
-        Map<String, Object> ActualResult = emitterRepository.findAllEventCacheStartWithByMemberId(String.valueOf(memberId));
+        Map<String, Object> ActualResult = emitterRepository.findAllEventCacheStartWithById(String.valueOf(memberId));
 
         //then
         assertEquals(3, ActualResult.size());
@@ -146,7 +146,7 @@ class EmitterRepositoryImplTest {
         emitterRepository.deleteAllEventCacheStartWithId(String.valueOf(memberId));
 
         //then
-        assertEquals(0, emitterRepository.findAllEventCacheStartWithByMemberId(String.valueOf(memberId)).size());
+        assertEquals(0, emitterRepository.findAllEventCacheStartWithById(String.valueOf(memberId)).size());
     }
 
 }

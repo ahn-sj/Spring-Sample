@@ -1,4 +1,4 @@
-package com.springbox.ssenotification.complex;
+package com.springbox.ssenotification.complex.notification;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -41,7 +41,7 @@ public class EmitterRepositoryImpl implements EmitterRepository {
     }
 
     @Override
-    public Map<String, Object> findAllEventCacheStartWithByMemberId(String memberId) {
+    public Map<String, Object> findAllEventCacheStartWithById(String memberId) {
         Map<String, Object> map = new HashMap<>();
 
         for (Map.Entry<String, Object> entry : eventCache.entrySet()) {

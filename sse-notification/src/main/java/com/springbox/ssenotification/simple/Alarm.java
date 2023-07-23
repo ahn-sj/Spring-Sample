@@ -1,6 +1,6 @@
 package com.springbox.ssenotification.simple;
 
-import com.springbox.ssenotification.complex.NotificationType;
+import com.springbox.ssenotification.complex.notification.NotificationType;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

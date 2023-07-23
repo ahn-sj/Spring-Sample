@@ -1,7 +1,6 @@
 package com.springbox.ssenotification.simple;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.springbox.ssenotification.complex.NotificationType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.util.StringUtils;
